@@ -1,0 +1,92 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kong
+  labels:
+    app: kong
+    tier: apigateway
+spec:
+  containers:
+    - name: kong
+      image: kong:latest
+      ports:
+        - containerPort: 8000
+        - containerPort: 8443
+        - containerPort: 8001
+        - containerPort: 8444
+      env:
+        - name: KONG_DATABASE
+          value: "postgres"
+        - name: KONG_PG_HOST
+          value: "kong-database"
+        - name: KONG_PG_USER
+          value: "kong"
+        - name: KONG_PG_PASSWORD
+          value: "kong"
+        - name: KONG_PG_DATABASE
+          value: "kong"
+        - name: KONG_PROXY_ACCESS_LOG
+          value: "/dev/stdout"
+        - name: KONG_ADMIN_ACCESS_LOG
+          value: "/dev/stdout"
+        - name: KONG_PROXY_ERROR_LOG
+          value: "/dev/stderr"
+        - name: KONG_ADMIN_ERROR_LOG
+          value: "/dev/stderr"
+      resources:
+        requests:
+          memory: "128Mi"
+          cpu: "500m"
+        limits:
+          memory: "256Mi"
+          cpu: "1000m"
+    - name: kong-migration
+      image: kong:latest
+      command:
+        - kong
+        - migrations
+        - bootstrap
+        - -vv
+      env:
+        - name: KONG_DATABASE
+          value: "postgres"
+        - name: KONG_PG_HOST
+          value: "kong-database"
+        - name: KONG_PG_USER
+          value: "kong"
+        - name: KONG_PG_PASSWORD
+          value: "kong"
+        - name: KONG_PG_DATABASE
+          value: "kong"
+      resources:
+        requests:
+          memory: "128Mi"
+          cpu: "500m"
+        limits:
+          memory: "256Mi"
+          cpu: "1000m"
+    - name: kong-migrations-up
+      image: kong:latest
+      command:
+        - kong
+        - migrations
+        - up
+        - -vv
+      env:
+        - name: KONG_DATABASE
+          value: "postgres"
+        - name: KONG_PG_HOST
+          value: "kong-database"
+        - name: KONG_PG_USER
+          value: "kong"
+        - name: KONG_PG_PASSWORD
+          value: "kong"
+        - name: KONG_PG_DATABASE
+          value: "kong"
+      resources:
+        requests:
+          memory: "128Mi"
+          cpu: "500m"
+        limits:
+          memory: "256Mi"
+          cpu: "1000m"
