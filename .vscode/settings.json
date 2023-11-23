@@ -1,0 +1,6 @@
+{
+    "yaml.schemas": {
+        "kubernetes": "*.yaml",
+        "https://json.schemastore.org/prisma.json": "file:///d%3A/Programmation/web/kong-ory-docker/oathkeeper/access-rules.yml"
+    }
+}

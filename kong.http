@@ -1,0 +1,25 @@
+@host_kong_admin=http://localhost:8001
+@host_kong_proxy=http://localhost:8000
+
+POST {{host_kong_admin}}/services/
+Content-Type: application/json
+
+{
+    "name": "secure-api",
+    "url": "http://oathkeeper:4455"
+}
+
+###
+
+POST {{host_kong_admin}}/services/secure-api/routes
+Content-Type: application/json
+
+{
+    "paths": ["/"],
+    "methods":["GET","POST","PUT","DELETE","PATCH"],
+    "name":"hello"
+}
+###
+
+GET {{host_kong_proxy}}/hello
+Content-Type: application/json
