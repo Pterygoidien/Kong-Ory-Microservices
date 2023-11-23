@@ -1,0 +1,1 @@
+This repo contains a functional example of Ory and Kong, with the latest compatible versions
