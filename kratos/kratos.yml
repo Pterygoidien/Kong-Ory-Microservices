@@ -94,4 +94,4 @@ identity:
 
 courier:
   smtp:
-    connection_uri: smtp://no-reply@v-lock.be:c5YsPOY0L5ihxRxY1LsUZIq7uHa1G3@tumulte.domainepublic.net:587/?skip_ssl_verify=true&smtp_ssl_enabled=false
+    connection_uri: smtps://test:test@mail-slurper:1025/?skip_ssl_verify=true
