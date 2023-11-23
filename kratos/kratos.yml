@@ -1,6 +1,6 @@
 version: v0.13.0
 
-dsn: memory
+dsn: postgres://kratos:secret@kratos-db:5432/kratos?sslmode=disable&max_conns=20&max_idle_conns=4
 
 serve:
   public:
