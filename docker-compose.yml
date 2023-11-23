@@ -130,7 +130,7 @@ services:
   # Ory Kratos                          #
   #######################################
   kratos-migrate:
-    image: oryd/kratos:v0.13.0
+    image: oryd/kratos:v1.0.0
     environment:
       - DSN=postgres://kratos:secret@kratos-db:5432/kratos?sslmode=disable&max_conns=20&max_idle_conns=4
     volumes:
@@ -143,7 +143,7 @@ services:
   kratos:
     depends_on:
       - kratos-migrate
-    image: oryd/kratos:v0.13.0
+    image: oryd/kratos:v1.0.0
     ports:
       - "4433:4433" # public
       - "4434:4434" # admin
@@ -158,7 +158,7 @@ services:
       - intranet
 
   kratos-db:
-    image: postgres:9.6
+    image: postgres:11.8
     ports:
       - "5434:5432"
     environment:
@@ -191,7 +191,7 @@ services:
   # Temporary : DEV MODE (kratos UI)    #
   #######################################
   kratos-selfservice-ui-node:
-    image: oryd/kratos-selfservice-ui-node:v0.13.0
+    image: oryd/kratos-selfservice-ui-node:v1.0.0
     ports:
       - "4455:4455"
     environment:

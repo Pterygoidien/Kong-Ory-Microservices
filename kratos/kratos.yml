@@ -1,6 +1,6 @@
 version: v0.13.0
 
-dsn: postgres://kratos:secret@kratos-db:5432/kratos?sslmode=disable&max_conns=20&max_idle_conns=4
+dsn: memory
 
 serve:
   public:
@@ -14,6 +14,8 @@ selfservice:
   default_browser_return_url: http://127.0.0.1:4455/
   allowed_return_urls:
     - http://127.0.0.1:4455
+    - http://localhost:19006/Callback
+    - exp://localhost:8081/--/Callback
 
   methods:
     password:
@@ -94,4 +96,4 @@ identity:
 
 courier:
   smtp:
-    connection_uri: smtps://test:test@mail-slurper:1025/?skip_ssl_verify=true
+    connection_uri: smtps://test:test@mailslurper:1025/?skip_ssl_verify=true
