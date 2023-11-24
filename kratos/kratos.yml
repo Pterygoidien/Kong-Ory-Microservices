@@ -20,6 +20,22 @@ selfservice:
   methods:
     password:
       enabled: true
+    #oidc:
+    #  enabled: true
+    #  config:
+    #    providers:
+    #      - id: google
+    #        provider: google
+    #        client_id: 1234567890.apps.googleusercontent.com
+    #        client_secret: secret
+    #        mapper_url: http://
+    #        mapper_id: id
+    #        mapper_email: email
+    #        scope:
+    #          - openid
+    #          - email
+    #          - profile
+
     totp:
       config:
         issuer: Kratos
